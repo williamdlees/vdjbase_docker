@@ -1,0 +1,6 @@
+This 'base image' has versions of Python and R with all required libraries. This takes a while to build.
+The vdjbase image uses this one as a starting point. Putting all the library installation into this base
+image means that the vdjbase image can be rebuilt quickly (pulling in new code from bitbucket) without
+needing to wait for the libraries to install. Just remember to refresh this image to get new libraries.
+
+- to build: docker build --no-cache -t vdjbase_base . 
