@@ -40,7 +40,7 @@ services:
 VDJbase will be listening on port 6000. If you would like to use some other port, modify the setting in `docker-compose.yml`.
 
 You will need to create a directory to hold some shared files created by vdjbase and served by nginx, and also a directory to hold configuration info. In the compose
-file, these are `/share/vdjbase/shared` and `/share/vdjbase/config/nginx`. Amend the compose file as necessary and create the directories:
+file, these are `/share/vdjbase/shared` and `/share/vdjbase/config/nginx`. Amend the paths in the compose file as necessary and create the directories:
 
 ```shell script
 mkdir /share/vdjbase/shared
@@ -64,7 +64,7 @@ docker build --no-cache -t vdjbase .
 In the directory containing `docker-compose.yml`:
 
 ```shell script
-docker-compuse up -d
+docker-compose up -d
 ````
 
 This initial run will establish the configuration files for nginx in the persistent folder. Once the containers have been running for 2 minutes or so, take them 
@@ -73,7 +73,7 @@ down, and copy the site configuration file into the appropriate location (modify
 ```shell script
 docker-compose down
 cp vdjbase_nginx_config /share/vdjbase/config/nginx/nginx/site-confs/default
-docker-compuse up -d
+docker-compose up -d
 ````
 
 VDJbase should now be running on the port defined in `docker-compose.yml` (port 6000, unless you modified the file).
