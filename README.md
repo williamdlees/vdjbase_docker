@@ -1,6 +1,6 @@
 # Run VDJbase within docker
 
-This configuration uses  Docker Compose to orchestrate two containers: one running vdjbase, and the other running nginx. The vdjbase container is built on two layers. 
+This configuration uses  Docker Compose to orchestrate two containers: one running vdjbase, and the other running nginx. The vdjbase container is built in two layers. 
 The first, `vdjbase_base`, has all the Python and R libraries, including `vdjbaseviz`. It is slow to build, because many of the R libraries are built from source. The
 second container, `vdjbase`, pulls the current source from bitbucket. It is quick to build, making it easy to pull down updates by rebuilding the container. It is also
 possible, during development for example, to log in to the vdjbase container and make modifications there, but these will not be persisted when the container is
@@ -37,7 +37,7 @@ services:
     restart: unless-stopped
 ```
 
-VDJbase will be listening on port 6000. If you would like to use some other port, modify the setting in `docker-compose.yml`.
+The server will be listening on port 6000. If you would like to use some other port, modify the setting in `docker-compose.yml`.
 
 You will need to create a directory to hold some shared files created by vdjbase and served by nginx, and also a directory to hold configuration info. In the compose
 file, these are `/share/vdjbase/shared` and `/share/vdjbase/config/nginx`. Amend the paths in the compose file as necessary and create the directories:
@@ -80,4 +80,4 @@ VDJbase should now be running on the port defined in `docker-compose.yml` (port 
 
 ## Logs and debugging
 
-Nginx logs are in /share/config/nginx/log/nginx. You can log in to either container to see what it's doing.
+Nginx logs are in /share/config/nginx/log/nginx. You can log in to either container to see what it's doing. If you start the containers in non-daemon mode (omit the -d), you will see logging output from VDJbase.
